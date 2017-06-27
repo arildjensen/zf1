@@ -2,16 +2,16 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.define "node001" do |node001|
-    node001.vm.box = "ubuntu/trusty64"
-    node001.vm.hostname = "node001"
-    node001.vm.network "private_network", ip: "192.168.255.101"
-    node001.vm.provision "chef_solo" do |chef|
+  config.vm.define "web001" do |web001|
+    web001.vm.box = "ubuntu/trusty64"
+    web001.vm.hostname = "web001"
+    web001.vm.network "private_network", ip: "192.168.255.101"
+    web001.vm.provision "chef_solo" do |chef|
       chef.add_recipe "simple_web"
     end
   end
-  config.vm.define "node002" do |node002|
-    node002.vm.box = "ubuntu/trusty64"
-    node002.vm.hostname = "node002"
+  config.vm.define "web002" do |web002|
+    web002.vm.box = "ubuntu/trusty64"
+    web002.vm.hostname = "web002"
   end
 end

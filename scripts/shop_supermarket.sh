@@ -1,8 +1,12 @@
 #!/bin/bash
 
-cd cookbooks
-knife cookbook site download apache2
-knife cookbook site download prometheus
+cd ~/vagrant/cookbooks
+
+cookbooks=(apache2 prometheus )
+
+for i in "$cookbooks"; do
+  knife cookbook site download $i;
+done
 
 for i in *.tar.gz; do
   tar xzvf $i;
