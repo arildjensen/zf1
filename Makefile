@@ -11,7 +11,8 @@ install:
 	if [ ! -d ~/vagrant ]; then mkdir ~/vagrant; fi
 	install -m 0644 vagrant/Vagrantfile ~/vagrant/Vagrantfile
 	if [ ! -d ~/vagrant/cookbooks ]; then mkdir ~/vagrant/cookbooks; fi
-	cp -r chef/cookbooks/simple_web ~/vagrant/cookbooks
+	cp -r chef/cookbooks/* ~/vagrant/cookbooks
 	if [ ! -d ~/vagrant/scripts ]; then mkdir ~/vagrant/scripts; fi
-	install -m 0755 scripts/shop_supermarket.sh ~/vagrant/scripts/shop_supermarket.sh
-	~/vagrant/scripts/shop_supermarket.sh
+	install -m 0755 scripts/shop_supermarket.sh  ~/vagrant/scripts/shop_supermarket.sh
+	install -m 0755 scripts/setup_localmarket.sh ~/vagrant/scripts/setup_localmarket.sh
+	~/vagrant/scripts/setup_localmarket.sh

@@ -1,17 +1,14 @@
 #!/bin/bash
 
-cd ~/vagrant/cookbooks
+if [ ! -d ~/localmarket ]; then
+  mkdir ~/localmarket;
+fi
+cd ~/localmarket
 
-cookbooks=(apache2 prometheus )
+cookbooks=(apache2 consul build-essential nssm golang poise poise-archive poise-service seven_zip mingw windows ohai )
 
-for i in "$cookbooks"; do
+for i in "${cookbooks[@]}"; do
   knife cookbook site download $i;
 done
-
-for i in *.tar.gz; do
-  tar xzvf $i;
-done;
-
-rm -rf *.tar.gz
 
 exit 0
