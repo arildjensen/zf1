@@ -2,6 +2,15 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+  config.vm.define "proxy001" do |proxy001|
+    proxy001.vm.box = "ubuntu/trusty64"
+    proxy001.vm.hostname = "proxy001"
+    proxy001.vm.network "private_network", ip: "192.168.255.200"
+    proxy001.vm.provision "chef_solo" do |chef|
+      chef.add_recipe "simple_consul"
+      chef.add_recipe "simple_haproxy"
+    end
+  end
   config.vm.define "consul001" do |consul001|
     consul001.vm.box = "ubuntu/trusty64"
     consul001.vm.hostname = "consul001"
@@ -16,6 +25,7 @@ Vagrant.configure("2") do |config|
     web001.vm.network "private_network", ip: "192.168.255.101"
     web001.vm.provision "chef_solo" do |chef|
       chef.add_recipe "simple_web"
+      chef.add_recipe "simple_consul"
     end
   end
   config.vm.define "web002" do |web002|
@@ -24,6 +34,7 @@ Vagrant.configure("2") do |config|
     web002.vm.network "private_network", ip: "192.168.255.102"
     web002.vm.provision "chef_solo" do |chef|
       chef.add_recipe "simple_web"
+      chef.add_recipe "simple_consul"
     end
   end
   config.vm.define "web003" do |web003|
@@ -32,6 +43,7 @@ Vagrant.configure("2") do |config|
     web003.vm.network "private_network", ip: "192.168.255.103"
     web003.vm.provision "chef_solo" do |chef|
       chef.add_recipe "simple_web"
+      chef.add_recipe "simple_consul"
     end
   end
 end

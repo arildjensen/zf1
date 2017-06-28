@@ -1,0 +1,11 @@
+#!/bin/bash
+
+nohup consul agent \
+  --server \
+  -data-dir=/etc/consul/conf.d/ \
+  -bind=<%= @external_ip %> \
+  -client=<%= @external_ip %> \
+  -ui \
+  -bootstrap-expect=1 \
+  -node=<%= @node_name %> \
+  -encrypt=qKHN9qjidKHiQaQrw53ceA== &

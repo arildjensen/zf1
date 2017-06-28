@@ -1,0 +1,9 @@
+#!/bin/bash
+
+nohup consul agent \
+  -data-dir=/etc/consul/conf.d/ \
+  -config-dir=/etc/consul/conf.d \
+  -bind=<%= @external_ip %> \
+  -node=<%= @node_name %> \
+  -join=192.168.255.201 \
+  -encrypt=qKHN9qjidKHiQaQrw53ceA== &
